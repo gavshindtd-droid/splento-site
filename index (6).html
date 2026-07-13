@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splento — Events & Conference Photography & Videography, Worldwide</title>
+<meta name="description" content="Professional event photography and videography for conferences, exhibitions and corporate events. Edited files in 48 hours. Transparent pricing. 47 countries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-obsidian: #000000;
+  --color-paper-white: #ffffff;
+  --color-deep-teal: #0b252a;
+  --color-bone: #f6f5f5;
+  --color-sandstone: #f5ece5;
+  --color-ash-blush: #ede2d7;
+  --color-stone: #d7cecc;
+  --color-iron: #e1dad9;
+  --color-pewter: #afaeae;
+  --color-charcoal: #222222;
+  --color-dusty-sky: #c5d5e8;
+  --color-mist-mint: #d4e6eb;
+  --color-wisteria: #efe5f9;
+  --color-desert-clay: #e7d3bf;
+  --color-slate-teal: #406e7a;
+  --color-saddle-brown: #4c312b;
+  --font-serif: 'Playfair Display','Georgia','Times New Roman',serif;
+  --fw-regular: 400; --fw-medium: 500; --fw-bold: 700;
+  --radius-cards: 16px; --radius-badges: 8px; --radius-buttons: 999px;
+  --page-max: 1200px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font-serif);font-weight:var(--fw-regular);color:var(--color-obsidian);background:var(--color-paper-white);font-size:16px;line-height:1.4;letter-spacing:-0.32px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+input,select,textarea{font-family:inherit}
+
+.t-display{font-size:clamp(36px,5vw,74px);line-height:1;letter-spacing:-0.045em;font-weight:var(--fw-bold)}
+.t-heading-lg{font-size:clamp(32px,4.5vw,64px);line-height:1.1;letter-spacing:-0.04em;font-weight:var(--fw-bold)}
+.t-heading{font-size:clamp(26px,3.5vw,46px);line-height:1.1;letter-spacing:-0.04em;font-weight:var(--fw-bold)}
+.t-heading-sm{font-size:clamp(20px,2.5vw,28px);line-height:1.2;letter-spacing:-0.02em;font-weight:var(--fw-bold)}
+.t-body-lg{font-size:18px;line-height:1.5;letter-spacing:-0.36px}
+.container{max-width:var(--page-max);margin:0 auto;padding:0 24px}
+.section-gap{padding:80px 0}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius-buttons);font-size:16px;font-weight:var(--fw-medium);letter-spacing:-0.32px;transition:opacity 0.2s,transform 0.15s;white-space:nowrap}
+.btn:hover{opacity:0.85}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--color-obsidian);color:var(--color-paper-white);border:1px solid var(--color-obsidian)}
+.btn-primary-dark{background:var(--color-paper-white);color:var(--color-obsidian)}
+.btn-outline{background:transparent;color:var(--color-obsidian);border:1px solid var(--color-iron)}
+.btn-outline:hover{background:var(--color-bone)}
+.btn:focus-visible{outline:2px solid var(--color-slate-teal);outline-offset:2px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-iron);padding:12px 0}
+.nav-inner{max-width:var(--page-max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:var(--fw-bold);letter-spacing:-0.02em;display:flex;align-items:center;gap:8px}
+.nav-logo img{height:28px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:16px;font-weight:var(--fw-medium);letter-spacing:-0.32px;transition:opacity 0.2s}
+.nav-links a:hover{opacity:0.6}
+.nav-cta .btn{padding:10px 22px;font-size:14px}
+.nav-mobile-toggle{display:none;background:none;padding:8px}
+.nav-mobile-toggle span{display:block;width:22px;height:2px;background:var(--color-obsidian);margin:5px 0}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--color-paper-white);z-index:200;flex-direction:column;padding:80px 24px 24px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:28px;font-weight:var(--fw-bold);padding:16px 0;border-bottom:1px solid var(--color-iron)}
+.mobile-menu-close{position:absolute;top:16px;right:24px;background:none;font-size:28px;padding:8px}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.nav-mobile-toggle{display:block}}
+
+/* ═══════ HERO — Task 1: no overlay, localized backdrop ═══════ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:60px}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+/* NO overlay, NO ::after, NO opacity reduction — photo is fully visible */
+.hero-content{position:relative;z-index:2;max-width:var(--page-max);margin:0 auto;padding:80px 24px;width:100%}
+.hero-grid{display:grid;grid-template-columns:1fr 400px;gap:48px;align-items:center}
+.hero-text-col{background:rgba(11,37,42,0.82);backdrop-filter:blur(8px);border-radius:var(--radius-cards);padding:40px 36px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--color-slate-teal);color:var(--color-paper-white);padding:6px 16px;border-radius:var(--radius-badges);font-size:14px;font-weight:var(--fw-medium);letter-spacing:-0.28px;margin-bottom:20px}
+.hero h1{color:var(--color-paper-white);margin-bottom:16px;font-size:clamp(30px,4vw,56px);line-height:1.05;letter-spacing:-0.04em;font-weight:var(--fw-bold)}
+.hero-sub{color:rgba(255,255,255,0.8);font-size:17px;line-height:1.5;letter-spacing:-0.34px;margin-bottom:24px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15)}
+.hero-stat-value{font-size:clamp(24px,3vw,34px);font-weight:var(--fw-bold);color:var(--color-paper-white);letter-spacing:-0.04em;line-height:1}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.55);margin-top:3px;white-space:nowrap}
+
+/* Hero form — solid opaque deep teal, no transparency */
+.hero-form-card{background:#0b252a;border:1px solid #1a4a54;border-radius:var(--radius-cards);padding:32px}
+.hero-form-title{font-size:22px;font-weight:var(--fw-bold);color:#ffffff;margin-bottom:4px;letter-spacing:-0.02em}
+.hero-form-sub{font-size:14px;color:#9cb8c0;margin-bottom:24px}
+.form-group{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.form-label{font-size:13px;font-weight:var(--fw-medium);color:#8a9ba0;letter-spacing:-0.26px}
+.form-input{background:#12363d;border:1px solid #2a5a64;border-radius:var(--radius-badges);padding:12px 14px;font-size:15px;color:#b0c4c9;transition:border-color 0.2s;letter-spacing:-0.3px;outline:none}
+.form-input::placeholder{color:#5a7a82}
+.form-input:focus{border-color:#5ba3b0;outline:none}
+.form-input.error{border-color:#c0392b}
+textarea.form-input{resize:vertical;min-height:90px}
+.form-submit-btn{width:100%;margin-top:8px;padding:14px 28px;justify-content:center;font-size:16px}
+.form-error-msg{font-size:11px;color:#e74c3c;display:none}
+.form-success{display:none;text-align:center;padding:48px 16px}
+.form-success.show{display:block}
+.form-success h3{font-size:24px;font-weight:var(--fw-bold);color:#ffffff;margin-bottom:8px}
+.form-success p{font-size:16px;color:#9cb8c0}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-form-card{max-width:480px}
+  .hero-text-col{padding:28px 24px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ═══════ LOGO BAR — 3D CAROUSEL ═══════ */
+.logo-bar{background:var(--color-bone);padding:48px 0;overflow:hidden}
+.logo-bar-label{text-align:center;font-size:14px;color:var(--color-pewter);letter-spacing:-0.28px;margin-bottom:28px;font-weight:var(--fw-medium)}
+.logo-carousel-wrapper{perspective:900px;max-width:1000px;margin:0 auto;overflow:hidden}
+.logo-track-3d{display:flex;align-items:center;gap:64px;animation:scroll3d 25s linear infinite;transform-style:preserve-3d}
+.logo-track-3d img{height:36px;width:auto;flex-shrink:0;filter:grayscale(100%);opacity:0.55;transition:opacity 0.3s,transform 0.4s;transform:rotateY(-8deg);object-fit:contain;vertical-align:middle}
+.logo-track-3d img:hover{opacity:0.9;transform:rotateY(0deg) scale(1.1)}
+@keyframes scroll3d{
+  0%{transform:translateX(0) rotateY(2deg)}
+  50%{transform:translateX(-50%) rotateY(-2deg)}
+  100%{transform:translateX(-100%) rotateY(2deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .logo-track-3d{animation:none!important;flex-wrap:wrap;justify-content:center;gap:40px}
+  .logo-track-3d img{transform:none}
+}
+
+/* ═══════ PROBLEM SECTION — Task 3: visual redesign ═══════ */
+.problem-section{background:var(--color-paper-white)}
+.problem-header{text-align:center;margin-bottom:56px}
+.problem-header .section-eyebrow{font-size:14px;font-weight:var(--fw-medium);color:var(--color-slate-teal);margin-bottom:12px}
+.problem-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.problem-col{border-radius:var(--radius-cards);padding:36px 28px}
+.problem-col-bad{background:var(--color-desert-clay)}
+.problem-col-good{background:var(--color-mist-mint)}
+.problem-col h3{font-size:22px;font-weight:var(--fw-bold);letter-spacing:-0.02em;margin-bottom:24px}
+.problem-col ul{list-style:none}
+.problem-col li{padding:12px 0;font-size:16px;line-height:1.5;letter-spacing:-0.32px;display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid rgba(0,0,0,0.06)}
+.problem-col li:last-child{border-bottom:none}
+.problem-col li .icon{font-size:18px;font-weight:var(--fw-bold);flex-shrink:0;width:22px;text-align:center}
+.problem-col-bad li .icon{color:var(--color-saddle-brown)}
+.problem-col-good li .icon{color:var(--color-slate-teal)}
+/* Scroll animation */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  .fade-up{opacity:1;transform:none;transition:none}
+}
+@media(max-width:768px){.problem-compare{grid-template-columns:1fr}}
+
+/* ═══════ UTP CARDS — Task 4: fixed alignment ═══════ */
+.utp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+.utp-card{padding:32px 24px;border-radius:var(--radius-cards);display:flex;flex-direction:column;gap:16px;min-height:220px}
+.utp-card:nth-child(1){background:var(--color-dusty-sky)}
+.utp-card:nth-child(2){background:var(--color-mist-mint)}
+.utp-card:nth-child(3){background:var(--color-wisteria)}
+.utp-card:nth-child(4){background:var(--color-desert-clay)}
+.utp-card h3{font-size:22px;font-weight:var(--fw-bold);letter-spacing:-0.02em;margin-bottom:0;min-height:56px;display:flex;align-items:flex-end}
+.utp-card p{font-size:16px;line-height:1.45;letter-spacing:-0.32px}
+@media(max-width:900px){.utp-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.utp-grid{grid-template-columns:1fr}}
+
+/* ═══════ SERVICES — 4 CARDS ═══════ */
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.service-card{background:var(--color-bone);border-radius:var(--radius-cards);overflow:hidden;border:1px solid var(--color-iron);transition:border-color 0.3s;display:flex;flex-direction:column}
+.service-card:hover{border-color:var(--color-slate-teal)}
+.service-card-img{width:100%;height:200px;object-fit:cover}
+.service-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.service-card h3{font-size:22px;font-weight:var(--fw-bold);letter-spacing:-0.02em;margin-bottom:10px}
+.service-card p{font-size:16px;line-height:1.5;letter-spacing:-0.32px;color:var(--color-charcoal);flex:1}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+
+/* ═══════ DARK BAND — Task 5: photo background ═══════ */
+.dark-band{position:relative;color:var(--color-paper-white);overflow:hidden}
+.dark-band-bg{position:absolute;inset:0}
+.dark-band-bg img{width:100%;height:100%;object-fit:cover}
+.dark-band-bg::after{content:'';position:absolute;inset:0;background:rgba(11,37,42,0.88)}
+.dark-band .container{position:relative;z-index:2}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.step{padding:32px 24px;border-radius:var(--radius-cards);background:rgba(246,245,245,0.06);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.1)}
+.step-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--color-slate-teal);color:var(--color-paper-white);font-size:16px;font-weight:var(--fw-bold);margin-bottom:16px}
+.step h3{font-size:22px;font-weight:var(--fw-bold);margin-bottom:8px;letter-spacing:-0.02em}
+.step p{font-size:16px;line-height:1.5;color:rgba(255,255,255,0.7);letter-spacing:-0.32px}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
+
+/* ═══════ PRICING ═══════ */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto}
+.pricing-card{background:var(--color-bone);border:1px solid var(--color-iron);border-radius:var(--radius-cards);padding:40px 32px;text-align:center}
+.pricing-card h3{font-size:22px;font-weight:var(--fw-bold);margin-bottom:8px}
+.pricing-value{font-size:clamp(36px,5vw,56px);font-weight:var(--fw-bold);letter-spacing:-0.04em;line-height:1;margin:16px 0 8px}
+.pricing-unit{font-size:16px;color:var(--color-pewter);margin-bottom:24px}
+.pricing-note{font-size:14px;color:var(--color-pewter);margin-top:16px;font-style:italic}
+.pricing-includes{text-align:left;list-style:none;margin-top:24px}
+.pricing-includes li{padding:8px 0;font-size:16px;display:flex;align-items:flex-start;gap:10px;letter-spacing:-0.32px}
+.pricing-includes li::before{content:'✓';color:var(--color-slate-teal);font-weight:var(--fw-bold);flex-shrink:0}
+@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
+
+/* ═══════ PORTFOLIO PREVIEW ═══════ */
+.portfolio-preview{background:var(--color-sandstone)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.portfolio-thumb{aspect-ratio:4/3;border-radius:var(--radius-cards);overflow:hidden;position:relative;border:1px solid var(--color-iron)}
+.portfolio-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.portfolio-thumb:hover img{transform:scale(1.04)}
+.portfolio-thumb-label{position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.7);color:white;padding:4px 12px;border-radius:var(--radius-badges);font-size:14px;font-weight:var(--fw-medium)}
+@media(max-width:768px){.portfolio-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.portfolio-grid{grid-template-columns:1fr}}
+
+/* ═══════ TESTIMONIALS ═══════ */
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--color-bone);border-radius:var(--radius-cards);padding:32px 24px;border:1px solid var(--color-iron);display:flex;flex-direction:column}
+.testimonial-stars{color:#c9a84c;font-size:18px;letter-spacing:2px;margin-bottom:16px}
+.testimonial-text{font-size:16px;line-height:1.5;flex:1;margin-bottom:20px;letter-spacing:-0.32px;font-style:italic}
+.testimonial-author-row{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--color-iron)}
+.testimonial-author{font-size:14px;font-weight:var(--fw-bold);letter-spacing:-0.28px}
+.testimonial-role{font-size:13px;color:var(--color-pewter)}
+@media(max-width:768px){.testimonial-grid{grid-template-columns:1fr}}
+
+/* ═══════ TRUST NUMBERS ═══════ */
+.trust-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;align-items:start}
+.trust-num-value{font-size:clamp(36px,5vw,56px);font-weight:var(--fw-bold);letter-spacing:-0.04em;line-height:1}
+.trust-num-label{font-size:16px;color:var(--color-pewter);margin-top:8px}
+@media(max-width:600px){.trust-numbers{grid-template-columns:1fr 1fr;gap:24px}}
+
+/* ═══════ FAQ ═══════ */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--color-iron)}
+.faq-question{width:100%;background:none;text-align:left;padding:24px 0;font-size:18px;font-weight:var(--fw-medium);letter-spacing:-0.36px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-question:hover{opacity:0.7}
+.faq-question:focus-visible{outline:2px solid var(--color-slate-teal);outline-offset:2px}
+.faq-icon{font-size:22px;transition:transform 0.3s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-item.open .faq-answer{max-height:300px}
+.faq-answer-inner{padding-bottom:24px;font-size:16px;line-height:1.6;color:var(--color-charcoal);letter-spacing:-0.32px}
+
+/* SECTION HEADERS */
+.section-header{margin-bottom:48px}
+.section-header.center{text-align:center}
+.section-eyebrow{font-size:14px;font-weight:var(--fw-medium);color:var(--color-slate-teal);letter-spacing:-0.28px;margin-bottom:12px}
+.section-header p{font-size:18px;line-height:1.5;color:var(--color-charcoal);max-width:560px;margin-top:12px;letter-spacing:-0.36px}
+.section-header.center p{margin-left:auto;margin-right:auto}
+
+.final-cta{background:var(--color-sandstone);text-align:center}
+
+/* ═══════ FOOTER — Task 6: social icons ═══════ */
+.footer{background:var(--color-stone);padding:64px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-brand p{font-size:16px;line-height:1.5;color:var(--color-charcoal);margin-top:16px;max-width:280px}
+.footer-col h4{font-size:14px;font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.footer-col a{display:block;font-size:16px;padding:4px 0;color:var(--color-charcoal);transition:opacity 0.2s}
+.footer-col a:hover{opacity:0.6}
+.footer-socials{display:flex;gap:16px;margin-top:20px}
+.footer-socials a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--color-iron);transition:opacity 0.2s,border-color 0.2s;padding:0}
+.footer-socials a:hover{opacity:0.7;border-color:var(--color-charcoal)}
+.footer-socials svg{width:16px;height:16px;fill:var(--color-charcoal)}
+.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--color-iron);font-size:14px;color:var(--color-pewter);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr}}
+
+.text-white{color:var(--color-paper-white)}
+.mt-16{margin-top:16px}
+.mt-24{margin-top:24px}
+.mt-32{margin-top:32px}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0865_Splento-Dark-logo-vector.svg" alt="Splento" loading="lazy">
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#hero" class="btn btn-primary">Get a Quote</a>
+    </div>
+    <button class="nav-mobile-toggle" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu">
+  <button class="mobile-menu-close" aria-label="Close menu" onclick="this.parentElement.classList.remove('open')">×</button>
+  <a href="#services" onclick="this.parentElement.classList.remove('open')">Services</a>
+  <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="#faq" onclick="this.parentElement.classList.remove('open')">FAQ</a>
+  <a href="#hero" onclick="this.parentElement.classList.remove('open')">Get a Quote</a>
+</div>
+
+<!-- ═══════ HERO — Task 1 + Task 2 ═══════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841cd759787a763e53414ac_JF7_3032%20(1).avif" alt="Conference speaker on stage at AI Summit with audience" loading="eager">
+  </div>
+  <div class="hero-content">
+    <div class="hero-grid">
+      <div class="hero-text-col">
+        <div class="hero-eyebrow">Events & Conference Photography</div>
+        <h1>Your Event Deserves More Than a Freelancer With a Camera</h1>
+        <p class="hero-sub">Professional photography and videography for conferences, exhibitions, and corporate events. Edited files delivered within 48 hours. Transparent pricing. Coverage in 47 countries.</p>
+        <div class="hero-stats">
+          <div><div class="hero-stat-value">20,000+</div><div class="hero-stat-label">Events covered</div></div>
+          <div><div class="hero-stat-value">47</div><div class="hero-stat-label">Countries</div></div>
+          <div><div class="hero-stat-value">48h</div><div class="hero-stat-label">Delivery</div></div>
+          <div><div class="hero-stat-value">850+</div><div class="hero-stat-label">5-star reviews</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-form-card">
+          <div class="hero-form-title">Get a Quote</div>
+          <div class="hero-form-sub">We respond within 24 hours — usually much sooner.</div>
+          <form id="enquiryForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full name *</label>
+              <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Your name" required>
+              <span class="form-error-msg" id="fullNameError">Please enter your name</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email *</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
+              <span class="form-error-msg" id="emailError">Please enter a valid email</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+49 123 456 7890" autocomplete="tel" inputmode="tel">
+              <span class="form-error-msg" id="phoneError">Please enter a valid phone number</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Tell us more</label>
+              <textarea class="form-input" id="message" name="message" placeholder="Event type, date, location, number of attendees…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary-dark form-submit-btn">Submit Enquiry</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <h3>Thank You</h3>
+            <p>We have received your enquiry and will be in touch within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ COMPANIES USING SPLENTO ═══════ -->
+<section class="logo-bar" aria-label="Companies using Splento">
+  <div class="logo-bar-label">Trusted by teams at</div>
+  <div class="logo-carousel-wrapper">
+    <div class="logo-track-3d" id="logoTrack">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d26d5f30fd7ac6e8c8085_hewlett-packard-enterprise-logo.svg" alt="Hewlett Packard Enterprise" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d254fd0f5e4c806f48223_gucci-logo.svg" alt="Gucci" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d22d5c90dce3a1ad285b0_wolt-logos-id6EQwzjcG.svg" alt="Wolt" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d23cb5d259287961b078e_Delivery_Hero_logo.svg" alt="Delivery Hero" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d25f64070fb1e9f81428e_investec-logo.svg" alt="Investec" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d269034ea55b3ae512068_facebook-logo.svg" alt="Facebook" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d271e1e810c865fa2c59f_google-logo.svg" alt="Google" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b06bb_TATE.svg" alt="Tate" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b06c0_aldo.svg" alt="Aldo" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0681_logo-mollie.svg" alt="Mollie" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0716_Jane.svg" alt="Jane" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0711_spark.svg" alt="Spark" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0728_bronx.svg" alt="Bronx" loading="lazy">
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b070d_inove.svg" alt="Inove" loading="lazy">
+      <!-- duplicate for infinite scroll -->
+      <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d26d5f30fd7ac6e8c8085_hewlett-packard-enterprise-logo.svg" alt="HPE" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d254fd0f5e4c806f48223_gucci-logo.svg" alt="Gucci" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d22d5c90dce3a1ad285b0_wolt-logos-id6EQwzjcG.svg" alt="Wolt" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d23cb5d259287961b078e_Delivery_Hero_logo.svg" alt="Delivery Hero" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d25f64070fb1e9f81428e_investec-logo.svg" alt="Investec" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d269034ea55b3ae512068_facebook-logo.svg" alt="Facebook" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661d271e1e810c865fa2c59f_google-logo.svg" alt="Google" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b06bb_TATE.svg" alt="Tate" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b06c0_aldo.svg" alt="Aldo" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0681_logo-mollie.svg" alt="Mollie" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0716_Jane.svg" alt="Jane" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0711_spark.svg" alt="Spark" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0728_bronx.svg" alt="Bronx" loading="lazy"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b070d_inove.svg" alt="Inove" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROBLEM — Task 3: visual comparison redesign ═══════ -->
+<section class="problem-section section-gap">
+  <div class="container">
+    <div class="problem-header">
+      <div class="section-eyebrow">The problem</div>
+      <h2 class="t-heading">Hiring Event Coverage Shouldn't Be This Difficult</h2>
+    </div>
+    <div class="problem-compare fade-up">
+      <div class="problem-col problem-col-bad">
+        <h3>Without Splento</h3>
+        <ul>
+          <li><span class="icon">×</span>Hours spent searching for a photographer</li>
+          <li><span class="icon">×</span>Freelancers cancel at the last minute</li>
+          <li><span class="icon">×</span>Edited files arrive weeks later — or never</li>
+          <li><span class="icon">×</span>Hidden fees appear after the shoot</li>
+          <li><span class="icon">×</span>Multiple vendors for multiple cities</li>
+          <li><span class="icon">×</span>No single provider for photo and video</li>
+        </ul>
+      </div>
+      <div class="problem-col problem-col-good">
+        <h3>With Splento</h3>
+        <ul>
+          <li><span class="icon">✓</span>One booking, vetted professional matched instantly</li>
+          <li><span class="icon">✓</span>Guaranteed availability and punctuality</li>
+          <li><span class="icon">✓</span>Edited files delivered within 48 hours</li>
+          <li><span class="icon">✓</span>Transparent flat rates, no surprises</li>
+          <li><span class="icon">✓</span>47 countries through a single point of contact</li>
+          <li><span class="icon">✓</span>Photography and videography in one project</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHY SPLENTO — Task 4: aligned cards ═══════ -->
+<section class="section-gap" style="background:var(--color-paper-white);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">Why Splento</div>
+      <h2 class="t-heading">Enterprise Reliability. Editorial Quality. Zero Friction.</h2>
+    </div>
+    <div class="utp-grid">
+      <div class="utp-card"><h3>Fast Turnaround</h3><p>Edited images and video delivered within 48 hours of your event. Guaranteed, not promised.</p></div>
+      <div class="utp-card"><h3>47 Countries</h3><p>One booking covers London, New York, Berlin, Dubai, or anywhere your events take you.</p></div>
+      <div class="utp-card"><h3>Transparent Pricing</h3><p>Flat hourly and half-day rates. No hidden fees, no surprise invoices, no awkward negotiations.</p></div>
+      <div class="utp-card"><h3>Hassle-Free</h3><p>One point of contact. One booking. We handle photographer matching, logistics, editing, and delivery.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SERVICES ═══════ -->
+<section class="section-gap" id="services" style="background:var(--color-bone);">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow">Services</div>
+      <h2 class="t-heading">Everything Your Event Needs in One Place</h2>
+      <p>Photography, videography, and post-production — handled end to end so you can focus on your event.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><img class="service-card-img" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/68430cc735cd885435d75f99_287528o_1cfoanep11gudov61gdl1e5j1rll1s.avif" alt="Exhibition booth with robot handshake" loading="lazy"><div class="service-card-body"><h3>Presentations & Exhibitions</h3><p>Booth documentation, product demos, attendee engagement. Stand out from the noise with polished trade show assets.</p></div></div>
+      <div class="service-card"><img class="service-card-img" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/68430c964dbc078ea6a37164_JF7_2685%20(1).avif" alt="Speaker at conference stage" loading="lazy"><div class="service-card-body"><h3>Conferences & Forums</h3><p>Keynotes, panels, networking, breakout sessions. Coverage that captures the energy and substance of your conference.</p></div></div>
+      <div class="service-card"><img class="service-card-img" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0889_Conference-Photography-by-Splento-1.webp" alt="Corporate event with speakers" loading="lazy"><div class="service-card-body"><h3>Corporate Events</h3><p>Product launches, galas, award ceremonies, team events. Professional coverage that reflects your brand standards.</p></div></div>
+      <div class="service-card"><img class="service-card-img" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841ccd577b4f4f7dcb713b0_10.avif" alt="Live concert and entertainment event" loading="lazy"><div class="service-card-body"><h3>Concerts & Events</h3><p>Live performances, entertainment events, gala evenings. Dynamic coverage that captures the atmosphere and energy.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;"><a href="#hero" class="btn btn-primary">Enquire About Your Event</a></div>
+  </div>
+</section>
+
+<!-- ═══════ HOW IT WORKS — Task 5: photo background ═══════ -->
+<section class="dark-band section-gap">
+  <div class="dark-band-bg">
+    <img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841cd37aec6b1055095443f_519%20(1).avif" alt="Conference audience in large auditorium" loading="lazy">
+  </div>
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-eyebrow" style="color:var(--color-slate-teal);">How it works</div>
+      <h2 class="t-heading text-white">From Enquiry to Edited Files in Three Steps</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-number">1</div><h3>Tell Us What You Need</h3><p>Submit the form with your event details. We respond within hours — not days — with a clear proposal and pricing.</p></div>
+      <div class="step"><div class="step-number">2</div><h3>We Handle Everything</h3><p>We match your event with a vetted professional, coordinate logistics, confirm the brief, and show up ready.</p></div>
+      <div class="step"><div class="step-number">3</div><h3>Receive Edited Files</h3><p>Your edited photographs and videos are delivered within 48 hours. Ready to use, share, and publish.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:48px;"><a href="#hero" class="btn btn-primary-dark">Start Your Booking</a></div>
+  </div>
+</section>
+
+<!-- ═══════ PRICING ═══════ -->
+<section class="section-gap" id="pricing">
+  <div class="container">
+    <div class="section-header center"><div class="section-eyebrow">Pricing</div><h2 class="t-heading">Clear Rates. No Surprises.</h2><p>Transparent pricing that covers everything — the photographer, editing, and delivery.</p></div>
+    <div class="pricing-grid">
+      <div class="pricing-card"><h3>Photography</h3><div class="pricing-value">£99</div><div class="pricing-unit">per hour</div><ul class="pricing-includes"><li>Vetted professional photographer</li><li>Full editing and colour correction</li><li>48-hour delivery guaranteed</li><li>High-resolution digital files</li><li>Commercial usage rights</li></ul><p class="pricing-note">Applicable to sessions of 3 hours or more</p><a href="#hero" class="btn btn-primary mt-24" style="justify-content:center;">Get Started</a></div>
+      <div class="pricing-card"><h3>Videography</h3><div class="pricing-value">£599</div><div class="pricing-unit">per half day</div><ul class="pricing-includes"><li>Professional videographer</li><li>Full editing and post-production</li><li>Highlight reel included</li><li>Multi-format delivery</li><li>Commercial usage rights</li></ul><p class="pricing-note">Hourly rates available upon request</p><a href="#hero" class="btn btn-primary mt-24" style="justify-content:center;">Get Started</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PORTFOLIO PREVIEW ═══════ -->
+<section class="portfolio-preview section-gap">
+  <div class="container">
+    <div class="section-header center"><div class="section-eyebrow">Our work</div><h2 class="t-heading">See What We Deliver</h2><p>A selection from recent conference, corporate event, and exhibition sessions across multiple countries.</p></div>
+    <div class="portfolio-grid">
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/68430c964dbc078ea6a37164_JF7_2685%20(1).avif" alt="Speaker at AI Summit conference" loading="lazy"><span class="portfolio-thumb-label">Conference</span></div>
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841cedbaec6b1055095b87c_43606_Copy%20of%205572151528026cf4d02e302016860df6de572.avif" alt="HPE Synergy speaker" loading="lazy"><span class="portfolio-thumb-label">Corporate</span></div>
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/68430cc735cd885435d75f99_287528o_1cfoanep11gudov61gdl1e5j1rll1s.avif" alt="Robot exhibition" loading="lazy"><span class="portfolio-thumb-label">Exhibition</span></div>
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841cd37aec6b1055095443f_519%20(1).avif" alt="Conference audience" loading="lazy"><span class="portfolio-thumb-label">Conference</span></div>
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841cce1c380fdbb48237486_14.avif" alt="Corporate event speaker" loading="lazy"><span class="portfolio-thumb-label">Corporate</span></div>
+      <div class="portfolio-thumb"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/6841ccd577b4f4f7dcb713b0_10.avif" alt="Event with colourful lighting" loading="lazy"><span class="portfolio-thumb-label">Event</span></div>
+    </div>
+    <div style="text-align:center;"><a href="portfolio.html" class="btn btn-primary">View Full Portfolio</a></div>
+  </div>
+</section>
+
+<!-- ═══════ TESTIMONIALS ═══════ -->
+<section class="section-gap" style="background:var(--color-paper-white);">
+  <div class="container">
+    <div class="section-header center"><div class="section-eyebrow">Client feedback</div><h2 class="t-heading">What Our Clients Say</h2></div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Excellent service, very efficient and great quality pics. Our photographer Irina was great she had some good ideas and was a pleasure to work with. We are very pleased with the outcome."</p><div class="testimonial-author-row"><img class="testimonial-avatar" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05ff/67f7fbb1d88e7ea6bd056ff2_679cdd687c035c889d841cfa_2.avif" alt="Warren Lewis QMB" loading="lazy"><div><div class="testimonial-author">Warren Lewis QMB</div><div class="testimonial-role">Business Event</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Our experience with Splento was amazing. Our photographer Graham arrived well in advance and stayed much longer than originally agreed to make sure we get all the shots we had been hoping for. He also delivered beautiful pictures very soon after the event. I would not hesitate at all to book again!"</p><div class="testimonial-author-row"><img class="testimonial-avatar" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05ff/67f7fccfd5ebe3b73a9fd48c_679cdda4598369770cd15d39_3.avif" alt="Eliska" loading="lazy"><div><div class="testimonial-author">Eliska</div><div class="testimonial-role">Corporate Event, London</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Super high quality photos! The photographer came in on time, set up quickly and just fired phenomenal images away. The next day we ended up having 38 photos which are 10+/10 quality and in comparison to the whole event getting this photographer was the best money that we spent."</p><div class="testimonial-author-row"><img class="testimonial-avatar" src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05ff/67f7fec37fb99ef1052b2f44_679cddce8ca0e98b48ef61b4_4.avif" alt="Eduard Ksenofontov" loading="lazy"><div><div class="testimonial-author">Eduard Ksenofontov</div><div class="testimonial-role">Conference Organiser</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TRUST NUMBERS ═══════ -->
+<section class="section-gap" style="background:var(--color-bone);"><div class="container"><div class="section-header center"><h2 class="t-heading">The Numbers Speak</h2></div><div class="trust-numbers"><div><div class="trust-num-value">20K+</div><div class="trust-num-label">Happy clients</div></div><div><div class="trust-num-value">2M+</div><div class="trust-num-label">Files delivered</div></div><div><div class="trust-num-value">47</div><div class="trust-num-label">Countries</div></div><div><div class="trust-num-value">850+</div><div class="trust-num-label">5-star reviews</div></div></div></div></section>
+
+<!-- ═══════ FAQ ═══════ -->
+<section class="section-gap" id="faq">
+  <div class="container">
+    <div class="section-header center"><div class="section-eyebrow">Common questions</div><h2 class="t-heading">Frequently Asked Questions</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>How quickly will I receive my edited files?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">All edited photographs are delivered within 48 hours of your event. This is a guarantee, not an estimate. Videography timelines depend on scope but are confirmed at booking.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>Can Splento cover events outside the UK?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">Yes. We operate in 47 countries worldwide, including the US, Germany, France, Spain, the Netherlands, UAE, and across Central Europe. One booking, one invoice, regardless of location.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>Are there any hidden fees?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">No. Photography is £99/hour (sessions of 3 hours or more). Videography is £599/half day. These rates include the photographer or videographer, editing, and delivery. No additional charges unless you request add-on services, which are always quoted in advance.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>Can you provide both photography and videography for the same event?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">Yes. We regularly provide combined photo and video coverage for conferences, exhibitions, and corporate events. You can book both through a single enquiry — we coordinate the team, logistics, and delivery as one project.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>What if I need to book on short notice?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">We can often accommodate bookings with as little as 24 hours notice in major cities. For international events we ask for 48 hours minimum. The sooner you reach out, the more flexibility we have.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span>What companies use Splento?</span><span class="faq-icon">+</span></button><div class="faq-answer" role="region"><div class="faq-answer-inner">We have worked with over 4,000 clients including teams at Google, Hewlett Packard Enterprise, Gucci, Meta, Delivery Hero, Wolt, Investec, Tate, and many more.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FINAL CTA ═══════ -->
+<section class="final-cta section-gap"><div class="container" style="text-align:center;"><h2 class="t-heading-lg">Your Event Is Too Important to Leave to Chance</h2><p class="t-body-lg mt-16" style="color:var(--color-charcoal);max-width:520px;margin-left:auto;margin-right:auto;">Tell us what you need. We will respond within hours with a clear proposal, transparent pricing, and a plan.</p><a href="#hero" class="btn btn-primary mt-32">Request Your Quote</a></div></section>
+
+<!-- ═══════ FOOTER — Task 6: social links ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><img src="https://cdn.prod.website-files.com/661957df9d0a934bf43b05f8/661957df9d0a934bf43b0865_Splento-Dark-logo-vector.svg" alt="Splento" style="height:24px;"></div>
+        <p>Professional photography and videography for business events, delivered fast and at transparent prices.</p>
+        <p style="margin-top:12px;font-size:14px;color:var(--color-pewter);">
+          <a href="mailto:support@events-photography.com" style="display:block;padding:2px 0;">support@events-photography.com</a>
+          <a href="tel:+442081231838" style="display:block;padding:2px 0;">+44 20 8123 1838</a>
+        </p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/splento/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/splento" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.instagram.com/splentoapp/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCaiThXld9uWZyBmNANErcFg" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.linkedin.com/company/splento" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><a href="#services">Presentations & Exhibitions</a><a href="#services">Conferences & Forums</a><a href="#services">Corporate Events</a><a href="#services">Concerts & Events</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="portfolio.html">Portfolio</a><a href="#faq">FAQ</a><a href="#hero">Contact</a></div>
+      <div class="footer-col"><h4>Coverage</h4><a href="#hero">United Kingdom</a><a href="#hero">United States</a><a href="#hero">Germany</a><a href="#hero">France</a><a href="#hero">47 countries total</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Splento. Made in London.</span>
+      <span><a href="https://events-photography.com/legal/terms-and-conditions" target="_blank" rel="noopener" style="margin-right:16px;">Terms of Service</a><a href="https://events-photography.com/legal/privacy-policy" target="_blank" rel="noopener" style="margin-right:16px;">Privacy Policy</a><a href="https://events-photography.com/legal/gdpr" target="_blank" rel="noopener">GDPR</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20)});
+
+function toggleFaq(btn){
+  const item=btn.parentElement,isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>{el.classList.remove('open');el.querySelector('.faq-question').setAttribute('aria-expanded','false')});
+  if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true')}
+}
+
+// Task 2: simplified validation — only fullName + email
+document.getElementById('enquiryForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  let valid=true;
+  this.querySelectorAll('.form-input').forEach(i=>i.classList.remove('error'));
+  this.querySelectorAll('.form-error-msg').forEach(m=>m.style.display='none');
+  const name=document.getElementById('fullName');
+  if(!name.value.trim()){name.classList.add('error');document.getElementById('fullNameError').style.display='block';valid=false}
+  const email=document.getElementById('email');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){email.classList.add('error');document.getElementById('emailError').style.display='block';valid=false}
+  const phone=document.getElementById('phone');
+  if(phone.value.trim()&&!/^\+?[\d\s()\-]{7,}$/.test(phone.value.trim())){phone.classList.add('error');document.getElementById('phoneError').style.display='block';valid=false}
+  if(valid){this.style.display='none';document.getElementById('formSuccess').classList.add('show')}
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();window.scrollTo({top:target.getBoundingClientRect().top+window.pageYOffset-70,behavior:'smooth'})}
+  })
+});
+
+// Task 3: scroll animation for fade-up elements
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})
+},{threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
