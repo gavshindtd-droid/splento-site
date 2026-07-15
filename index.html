@@ -328,29 +328,28 @@ textarea.form-input{resize:vertical;min-height:90px}
         <div class="hero-form-card">
           <div class="hero-form-title">Get a Quote</div>
           <div class="hero-form-sub">We respond within 24 hours — usually much sooner.</div>
-         <form id="contactForm" action="https://formspree.io/f/mzdnbwrp" method="POST">
-  <div class="form-group">
-    <label class="form-label" for="fullName">Full name *</label>
-    <input class="form-input" type="text" id="fullName" name="name" placeholder="Your name" required>
-    <span class="form-error-msg" id="fullNameError">Please enter your name</span>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="email">Email *</label>
-    <input class="form-input" type="email" id="email" name="_replyto" placeholder="you@company.com" required>
-    <span class="form-error-msg" id="emailError">Please enter a valid email</span>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="phone">Phone</label>
-    <input class="form-input" type="tel" id="phone" name="phone" placeholder="+49 123 456 7890" autocomplete="tel" inputmode="tel">
-    <span class="form-error-msg" id="phoneError">Please enter a valid phone number</span>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="message">Tell us more</label>
-    <textarea class="form-input" id="message" name="message" placeholder="Event type, date, location, number of attendees…"></textarea>
-  </div>
-  <input type="hidden" name="_subject" value="New submission from Splento Leads">
-  <button type="submit" class="btn btn-primary-dark form-submit-btn">Submit Enquiry</button>
-</form>
+          <form id="enquiryForm" action="https://formspree.io/f/mkodnqwy" method="POST">
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full name *</label>
+              <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Your name" required>
+              <span class="form-error-msg" id="fullNameError">Please enter your name</span>
+            </div>
+            <div class="form-group">
+  <label class="form-label" for="email">Email *</label>
+  <input class="form-input" type="email" id="email" name="_replyto" placeholder="you@company.com" required>
+  <span class="form-error-msg" id="emailError">Please enter a valid email</span>
+</div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="+49 123 456 7890" autocomplete="tel" inputmode="tel">
+              <span class="form-error-msg" id="phoneError">Please enter a valid phone number</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Tell us more</label>
+              <textarea class="form-input" id="message" name="message" placeholder="Event type, date, location, number of attendees…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary-dark form-submit-btn">Submit Enquiry</button>
+          </form>
           <div class="form-success" id="formSuccess">
             <h3>Thank You</h3>
             <p>We have received your enquiry and will be in touch within 24 hours.</p>
