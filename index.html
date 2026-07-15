@@ -328,7 +328,11 @@ textarea.form-input{resize:vertical;min-height:90px}
         <div class="hero-form-card">
           <div class="hero-form-title">Get a Quote</div>
           <div class="hero-form-sub">We respond within 24 hours — usually much sooner.</div>
-          <form id="enquiryForm" action="https://formspree.io/f/mkodnqwy" method="POST">
+          <form id="enquiryForm" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="enquiry">
+            <p style="display:none;">
+              <label>Don't fill this out: <input name="bot-field"></label>
+            </p>
             <div class="form-group">
               <label class="form-label" for="fullName">Full name *</label>
               <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Your name" required>
@@ -336,7 +340,7 @@ textarea.form-input{resize:vertical;min-height:90px}
             </div>
             <div class="form-group">
   <label class="form-label" for="email">Email *</label>
-  <input class="form-input" type="email" id="email" name="_replyto" placeholder="you@company.com" required>
+  <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
   <span class="form-error-msg" id="emailError">Please enter a valid email</span>
 </div>
             <div class="form-group">
@@ -574,16 +578,22 @@ function toggleFaq(btn){
 // Task 2: simplified validation — only fullName + email
 document.getElementById('enquiryForm').addEventListener('submit',function(e){
   e.preventDefault();
+  const form=this;
   let valid=true;
-  this.querySelectorAll('.form-input').forEach(i=>i.classList.remove('error'));
-  this.querySelectorAll('.form-error-msg').forEach(m=>m.style.display='none');
+  form.querySelectorAll('.form-input').forEach(i=>i.classList.remove('error'));
+  form.querySelectorAll('.form-error-msg').forEach(m=>m.style.display='none');
   const name=document.getElementById('fullName');
   if(!name.value.trim()){name.classList.add('error');document.getElementById('fullNameError').style.display='block';valid=false}
   const email=document.getElementById('email');
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){email.classList.add('error');document.getElementById('emailError').style.display='block';valid=false}
   const phone=document.getElementById('phone');
   if(phone.value.trim()&&!/^\+?[\d\s()\-]{7,}$/.test(phone.value.trim())){phone.classList.add('error');document.getElementById('phoneError').style.display='block';valid=false}
-  if(valid){this.style.display='none';document.getElementById('formSuccess').classList.add('show')}
+  if(!valid)return;
+  const submitBtn=form.querySelector('.form-submit-btn');
+  submitBtn.disabled=true;
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+    .then(()=>{form.style.display='none';document.getElementById('formSuccess').classList.add('show')})
+    .catch(()=>{submitBtn.disabled=false;alert('Something went wrong. Please try again or email us directly.')});
 });
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
